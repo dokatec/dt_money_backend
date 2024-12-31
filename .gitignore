@@ -1,3 +1,4 @@
 obj/
 bin/
 transacao.db
+migrations/
