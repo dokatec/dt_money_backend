@@ -34,4 +34,19 @@ public class TransacaoController : ControllerBase
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, transacao);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTransacao(int id)
+    {
+        var transacao = await _context.transacoes.FindAsync(id);
+        if (transacao == null)
+        {
+            return NotFound();
+        }
+
+        _context.transacoes.Remove(transacao);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
